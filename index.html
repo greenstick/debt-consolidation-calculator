@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>DEBT CON 5</title>
+		<title>DEBT CON 8</title>
 		<link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans:700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
@@ -48,7 +48,7 @@
 					</br>  
 					<div class="fit-text sub">
 						AGAINST THE AVERAGE AMERICAN'S ANNUAL EXPENSES?
-					</div>    
+					</div>
 				</div>
 				<!-- First Data Slide Start -->
 				<div id="S-2" class="dataslide">
@@ -62,7 +62,7 @@
 					</div>
 					<div class="row inputs">
 						<div class="fit-text input-body left">
-							<span class="dollar">$</span><div class="cursor selected"></div><div class="input" data-bind="value: groceries, editableText: groceries, valueUpdate: 'keypress'" placeholder="0"></div>
+							<span class="dollar">$</span><div class="cursor"></div><div class="input" data-bind="value: groceries, editableText: groceries, valueUpdate: 'keypress'" placeholder="0"></div>
 						</div>
 						<div class="fit-text input-body right">
 							<span class="dollar">$</span><div class="cursor"></div><div class="input" data-bind="value: restaurants, editableText: restaurants, valueUpdate: 'keypress'" placeholder="0"></div>
@@ -359,15 +359,15 @@
 	            <div id="S-10" class="dataslide results">
 	            	<div class="row big-graph graph lime">
 	            		<div class="fit-text sub-row value">
-	            			<span class="dollar" data-bind="css: {magenta: totalExpensesBar() > avgExpensesBar(), lime: totalExpensesBar() < avgExpensesBar()}">$</span><div data-bind="commaNum: totalExpenses, css: {magenta: totalExpensesBar() > avgExpensesBar(), lime: totalExpensesBar() < avgExpensesBar()}"></div>
+	            			<span class="dollar" data-bind="css: {magenta: totalExpensesBar() > avgExpensesBar(), lime: totalExpensesBar() < avgExpensesBar()}">$</span><div data-bind="commaNum: totalExpenses, css: {magenta: totalExpenses() > average.total(), lime: totalExpenses() < average.total()}"></div>
 	            		</div>
 	            		<div class="fit-text sub-row title" data-bind="css: {magenta: totalExpensesBar() > avgExpensesBar(), lime: totalExpensesBar() < avgExpensesBar()}">
 	            			YOUR TOTAL ANNUAL EXPENSES
 	            		</div>
-	            		<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, totalExpenses(), average.total()) , mouseout: hideToolTip}, value: totalExpenses, style: {width: totalExpensesBar() + '%'}, css: {magentaBG: totalExpensesBar() > avgExpensesBar(), limeBG: totalExpensesBar() < avgExpensesBar()}"></div>
+	            		<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, totalExpenses(), average.total()) , mouseout: hideToolTip}, style: {width: totalExpensesBar() + '%'}, css: {magentaBG: totalExpenses() > average.total(), limeBG: totalExpenses() < average.total()}"></div>
 	            	</div>
 	            	<div class="row big-graph graph grey">
-	            		<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, totalExpenses(), average.total()), mouseout: hideToolTip}, value: average.total, style: {width: avgExpensesBar() + '%'}"></div>
+	            		<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, totalExpenses(), average.total()), mouseout: hideToolTip}, style: {width: avgExpensesBar() + '%'}"></div>
 	            		<div class="fit-text sub-row title dark-grey">
 	            			U.S. AVERAGE
 	            		</div>
@@ -382,10 +382,10 @@
 		            			FOOD AND DRINK
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, foodTotal(), average.food()), mouseout: hideToolTip}, value: foodTotal, style: {width: foodTotalBar() + '%'}, css: {magentaBG: foodTotalBar() > foodAvgBar(), limeBG: foodTotalBar() < foodAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, foodTotalAnn(), average.food()), mouseout: hideToolTip}, style: {width: foodTotalBar() + '%'}, css: {magentaBG: foodTotalAnn() > average.food(), limeBG: foodTotalAnn() < average.food()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, foodTotal(), average.food()), mouseout: hideToolTip}, value: average.food, style: {width: foodAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, foodTotalAnn(), average.food()), mouseout: hideToolTip}, style: {width: foodAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 		            	<div class="graph right">
@@ -393,10 +393,10 @@
 		            			HEALTH CARE
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, healthTotal(), average.health()), mouseout: hideToolTip}, value: healthTotal, style: {width: healthTotalBar() + '%'}, css: {magentaBG: healthTotalBar() > healthAvgBar(), limeBG: healthTotalBar() < healthAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, healthTotalAnn(), average.health()), mouseout: hideToolTip}, style: {width: healthTotalBar() + '%'}, css: {magentaBG: healthTotalAnn() > average.health(), limeBG: healthTotalAnn() < average.health()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, healthTotal(), average.health()), mouseout: hideToolTip}, value: average.health, style: {width: healthAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, healthTotalAnn(), average.health()), mouseout: hideToolTip}, style: {width: healthAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 	            	</div>
@@ -406,10 +406,10 @@
 		            			HOUSING
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, housingTotal(), average.housing()), mouseout: hideToolTip}, value: housingTotal, style: {width: housingTotalBar() + '%'}, css: {magentaBG: housingTotalBar() > housingAvgBar(), limeBG: housingTotalBar() < housingAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, housingTotalAnn(), average.housing()), mouseout: hideToolTip}, style: {width: housingTotalBar() + '%'}, css: {magentaBG: housingTotalAnn() > average.housing(), limeBG: housingTotalAnn() < average.housing()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, housingTotal(), average.housing()), mouseout: hideToolTip}, value: average.housing, style: {width: housingAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, housingTotalAnn(), average.housing()), mouseout: hideToolTip}, style: {width: housingAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 		            	<div class="graph right">
@@ -417,10 +417,10 @@
 		            			ENTERTAINMENT
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, entertainTotal(), average.entertain()), mouseout: hideToolTip}, value: entertainTotal, style: {width: entertainTotalBar() + '%'}, css: {magentaBG: entertainTotalBar() > entertainAvgBar(), limeBG: entertainTotalBar() < entertainAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, entertainTotalAnn(), average.entertain()), mouseout: hideToolTip}, style: {width: entertainTotalBar() + '%'}, css: {magentaBG: entertainTotalAnn() > average.entertain(), limeBG: entertainTotalAnn() < average.entertain()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, entertainTotal(), average.entertain()), mouseout: hideToolTip}, value: average.entertain, style: {width: entertainAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, entertainTotalAnn(), average.entertain()), mouseout: hideToolTip}, style: {width: entertainAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 	            	</div>
@@ -430,10 +430,10 @@
 		            			APPAREL
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, clothingTotal(), average.clothing()), mouseout: hideToolTip}, value: clothingTotal, style: {width: clothingTotalBar() + '%'}, css: {magentaBG: clothingTotalBar() > clothingAvgBar(), limeBG: clothingTotalBar() < clothingAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, clothingTotalAnn(), average.clothing()), mouseout: hideToolTip}, style: {width: clothingTotalBar() + '%'}, css: {magentaBG: clothingTotalAnn() > average.clothing(), limeBG: clothingTotalAnn() < average.clothing()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, clothingTotal(), average.clothing()), mouseout: hideToolTip}, value: average.clothing, style: {width: clothingAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, clothingTotalAnn(), average.clothing()), mouseout: hideToolTip}, style: {width: clothingAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 		            	<div class="graph right">
@@ -441,10 +441,10 @@
 		            			CASH CONTRIBUTIONS
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, cashTotal(), average.cash()), mouseout: hideToolTip}, value: cashTotal, style: {width: cashTotalBar() + '%'}, css: {magentaBG: cashTotalBar() > cashAvgBar(), limeBG: cashTotalBar() < cashAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, cashTotalAnn(), average.cash()), mouseout: hideToolTip}, style: {width: cashTotalBar() + '%'}, css: {magentaBG: cashTotalAnn() > average.cash(), limeBG: cashTotalAnn() < average.cash()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, cashTotal(), average.cash()), mouseout: hideToolTip}, value: average.cash, style: {width: cashAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, cashTotalAnn(), average.cash()), mouseout: hideToolTip}, style: {width: cashAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 	            	</div>
@@ -454,10 +454,10 @@
 		            			TRANSPORTATION
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, transportTotal(), average.transport()), mouseout: hideToolTip}, value: transportTotal, style: {width: transportTotalBar() + '%'}, css: {magentaBG: transportTotalBar() > transportAvgBar(), limeBG: transportTotalBar() < transportAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, transportTotalAnn(), average.transport()), mouseout: hideToolTip}, style: {width: transportTotalBar() + '%'}, css: {magentaBG: transportTotalAnn() > average.transport(), limeBG: transportTotalAnn() < average.transport()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, transportTotal(), average.transport()), mouseout: hideToolTip}, value: average.transport, style: {width: transportAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, transportTotalAnn(), average.transport()), mouseout: hideToolTip}, style: {width: transportAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 		            	<div class="graph right">
@@ -465,10 +465,10 @@
 		            			INSURANCE AND PENSIONS
 		            		</div>
 		            		<div class="sub-row dynamic">
-		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, lifeTotal(), average.life()), mouseout: hideToolTip}, value: lifeTotal, style: {width: lifeTotalBar() + '%'}, css: {magentaBG: lifeTotalBar() > lifeAvgBar(), limeBG: lifeTotalBar() < lifeAvgBar()}"></div>
+		            			<div class="bar" data-bind="event: {mouseover: showToolTip.bind($data, lifeTotalAnn(), average.life()), mouseout: hideToolTip}, style: {width: lifeTotalBar() + '%'}, css: {magentaBG: lifeTotalAnn() > average.life(), limeBG: lifeTotalAnn() < average.life()}"></div>
 		            		</div>
 		            		<div class="sub-row static">
-		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, lifeTotal(), average.life()), mouseout: hideToolTip}, value: average.life, style: {width: lifeAvgBar() + '%'}"></div>
+		            			<div class="bar greyBG" data-bind="event: {mouseover: showToolTip.bind($data, lifeTotalAnn(), average.life()), mouseout: hideToolTip}, style: {width: lifeAvgBar() + '%'}"></div>
 		            		</div>
 		            	</div>
 	            	</div>
@@ -481,6 +481,14 @@
 	            			<div class="tool-tip-avg" data-bind="text: '$' + ttAvg()"></div>
 	            		</div>
 	            	</div>
+				</div>
+				<div id="S-11" class="dataslide credits">
+					<div class="debt-con">
+						<a href="http://www.debtconsolidation.com" target="_blank"></a>
+					</div>
+					<div class="c5">
+						<a href="http://www.columnfivemedia.com" target="_blank"></a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -499,7 +507,7 @@
 		   $(".big-graph .fit-text.value").fitText 	(1, 	{ minFontSize: '14px', maxFontSize: '80px' });
 		   $(".big-graph .fit-text.title").fitText 	(1, 	{ minFontSize: '8px',  maxFontSize: '16px' });
 		   $(".mini-graphs .fit-text.title").fitText(1.5, 	{ minFontSize: '8px',  maxFontSize: '16px' });
-		   $(".inputs .input-body .input").first().focus();
+		   // $(".inputs .input-body .input").first().focus();
 		</script>
 		<!-- Interactive JS -->
 		<script src="js/interactive.js" type="text/javascript"></script>

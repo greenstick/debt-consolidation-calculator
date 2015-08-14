@@ -75,15 +75,15 @@ The Event Bindings.
 			I.editKeys 			= [8, 9, 37, 38, 39, 40, 127], // An Array Of ASCII Edit Key Codes (Arrows, Tabs, Backspace, Delete)
 			I.valuesArray 		= ko.observableArray([]),
 			I.average 			= {
-				food 			: ko.observable(587),
-				health 			: ko.observable(293),
-				housing 		: ko.observable(1420),
-				entertain 		: ko.observable(216),
-				clothing 		: ko.observable(142),
-				cash 			: ko.observable(162),
-				transport 		: ko.observable(750),
-				life 			: ko.observable(464),
-				total 			: ko.observable(4034)
+				food 			: ko.observable(7044),
+				health 			: ko.observable(3516),
+				housing 		: ko.observable(17040),
+				entertain 		: ko.observable(2592),
+				clothing 		: ko.observable(1704),
+				cash 			: ko.observable(1944),
+				transport 		: ko.observable(9000),
+				life 			: ko.observable(5568),
+				total 			: ko.observable(48420)
 			},
 			I.ttDiff 			= ko.observable(''),
 			I.ttInput 			= ko.observable(0),
@@ -116,27 +116,21 @@ The Event Bindings.
 			I.restaurants 		= ko.observable(0),
 			I.alcohol 			= ko.observable(0),
 			I.foodTotal 		= ko.computed(function () {
-				var value = parseInt(I.groceries()) + parseInt(I.restaurants()) + parseInt(I.alcohol());
-				I.valuesArray.push(value);
-				return value;
+				return parseInt(I.groceries()) + parseInt(I.restaurants()) + parseInt(I.alcohol());
 			});
 
 			// Housing
 			I.rentMortgage 		= ko.observable(0),
 			I.utilities 		= ko.observable(0),
 			I.housingTotal 		= ko.computed(function () {
-				var value = parseInt(I.rentMortgage()) + parseInt(I.utilities());
-				I.valuesArray.push(value);
-				return value;
+				return parseInt(I.rentMortgage()) + parseInt(I.utilities());
 			});
 
 			// Clothing
 			I.clothes 			= ko.observable(0),
 			I.shoes 			= ko.observable(0),
 			I.clothingTotal 	= ko.computed(function () {
-				var value = parseInt(I.clothes()) + parseInt(I.shoes());
-				I.valuesArray.push(value);
-				return value;
+				return parseInt(I.clothes()) + parseInt(I.shoes());
 			});
 
 			// Transportation
@@ -145,9 +139,7 @@ The Event Bindings.
 			I.gas 				= ko.observable(0),
 			I.publicTransport 	= ko.observable(0),
 			I.transportTotal 	= ko.computed(function () {
-				var value = parseInt(I.vehicle()) + parseInt(I.vehicleInsurance()) + parseInt(I.gas()) + parseInt(I.publicTransport());
-				I.valuesArray.push(value);
-				return value;
+				return parseInt(I.vehicle()) + parseInt(I.vehicleInsurance()) + parseInt(I.gas()) + parseInt(I.publicTransport());
 			});
 
 			// Healthcare
@@ -155,9 +147,7 @@ The Event Bindings.
 			I.services 			= ko.observable(0),
 			I.prescriptions 	= ko.observable(0),
 			I.healthTotal 		= ko.computed(function () {
-				var value = parseInt(I.healthInsurance()) + parseInt(I.services()) + parseInt(I.prescriptions());
-				I.valuesArray.push(value);
-				return value;
+				return parseInt(I.healthInsurance()) + parseInt(I.services()) + parseInt(I.prescriptions());
 			});
 
 			// Entertainment
@@ -165,32 +155,79 @@ The Event Bindings.
 			I.pets 				= ko.observable(0),
 			I.hobbies 			= ko.observable(0),
 			I.entertainTotal 	= ko.computed(function () {
-				var value = parseInt(I.events()) + parseInt(I.pets()) + parseInt(I.hobbies());
-				I.valuesArray.push(value);
-				return value;
+				return parseInt(I.events()) + parseInt(I.pets()) + parseInt(I.hobbies());
 			});
 
 			// Cash Contributions
 			I.alimony 			= ko.observable(0),
 			I.charitable 		= ko.observable(0),
 			I.cashTotal 		= ko.computed(function () {
-				var value = parseInt(I.alimony()) + parseInt(I.charitable());
-				I.valuesArray.push(value);
-				return value;
+				return parseInt(I.alimony()) + parseInt(I.charitable());
 			});
 
 			// Insurance & Pension
 			I.lifeInsurance 	= ko.observable(0),
 			I.pension 			= ko.observable(0),
 			I.lifeTotal 		= ko.computed(function () {
-				var value = parseInt(I.lifeInsurance()) + parseInt(I.pension());
+				return parseInt(I.lifeInsurance()) + parseInt(I.pension());
+			});
+
+	// Stepping Inputted Values Up To Annual Valus
+
+			I.foodTotalAnn	 	= ko.computed(function () {
+				var value = I.foodTotal() * 12;
 				I.valuesArray.push(value);
 				return value;
 			});
 
+			I.housingTotalAnn 	= ko.computed(function () {
+				var value = I.housingTotal() * 12;
+				I.valuesArray.push(value);
+				return value;
+			});
+
+			I.clothingTotalAnn	= ko.computed(function () {
+				var value = I.clothingTotal() * 12;
+				I.valuesArray.push(value);
+				return value;
+			});
+
+			I.transportTotalAnn = ko.computed(function () {
+				var value = I.transportTotal() * 12;
+				I.valuesArray.push(value);
+				return value;
+			});
+
+			I.healthTotalAnn 	= ko.computed(function () {
+				var value = I.healthTotal() * 12;
+				I.valuesArray.push(value);
+				return value;
+			});
+
+			I.entertainTotalAnn = ko.computed(function () {
+				var value = I.entertainTotal() * 12;
+				I.valuesArray.push(value);
+				return value;
+			});
+
+			I.cashTotalAnn 		= ko.computed(function () {
+				var value = I.cashTotal() * 12;
+				I.valuesArray.push(value);
+				return value;
+			});
+
+			I.lifeTotalAnn 		= ko.computed(function () {
+				var value = I.lifeTotal() * 12;
+				I.valuesArray.push(value);
+				return value;
+			});
+
+	// Totals
+
 			// Now Compute The Grand Total From The Subtotals
 			I.totalExpenses 	= ko.computed(function () {
-				var value = parseInt(I.foodTotal()) + parseInt(I.housingTotal()) + parseInt(I.clothingTotal()) + parseInt(I.transportTotal()) + parseInt(I.healthTotal()) + parseInt(I.entertainTotal()) + parseInt(I.cashTotal()) + parseInt(I.lifeTotal());
+				var sum   = parseInt(I.foodTotal()) + parseInt(I.housingTotal()) + parseInt(I.clothingTotal()) + parseInt(I.transportTotal()) + parseInt(I.healthTotal()) + parseInt(I.entertainTotal()) + parseInt(I.cashTotal()) + parseInt(I.lifeTotal()),
+					value = sum * 12;
 				return value;
 			});
 
@@ -203,8 +240,6 @@ The Event Bindings.
 	// Values Will Be Computed Observables To Make
 	// Sure That Updates To The Above Values Cascade 
 	// Down The Logic Tree
-
-
 
 			// Adds Average Values To Values Array Then
 			// Returns The Highest Value Of All Inputs
@@ -238,7 +273,7 @@ The Event Bindings.
 				return (setRoundedMax(I.absMaxPercent()));
 			});
 
-	// Same Calculations As Above, Except For The Total Values
+	// Very Similar Calculations As Above Applied To The Total Values
 
 			I.absoluteMaxTotal 	= ko.computed(function () {
 				return Math.max(I.totalExpenses(), I.avgExpenses());
@@ -266,94 +301,94 @@ The Event Bindings.
  			
  			// User Food Bar Length	
 			I.foodTotalBar 		= ko.computed(function () {
-				return parseInt(remapValue((I.foodTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.foodTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Food Bar Length
 			I.foodAvgBar 		= ko.computed(function () {
-				return parseInt(remapValue((I.average.food() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.food() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// User Housing Bar Length
 			I.housingTotalBar 	= ko.computed(function () {
-				return parseInt(remapValue((I.housingTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.housingTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Housing Bar Length
 			I.housingAvgBar 	= ko.computed(function () {
-				return parseInt(remapValue((I.average.housing() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.housing() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// User Clothing Bar Length
 			I.clothingTotalBar 	= ko.computed(function () {
-				return parseInt(remapValue((I.clothingTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.clothingTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Clothing Bar Length
 			I.clothingAvgBar 	= ko.computed(function () {
-				return parseInt(remapValue((I.average.clothing() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.clothing() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// User Transport Bar Length
 			I.transportTotalBar = ko.computed(function () {
-				return parseInt(remapValue((I.transportTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.transportTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Transport Bar Length
 			I.transportAvgBar 	= ko.computed(function () {
-				return parseInt(remapValue((I.average.transport() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.transport() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// User Health Bar Length
 			I.healthTotalBar	= ko.computed(function () {
-				return parseInt(remapValue((I.healthTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.healthTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Health Bar Length
 			I.healthAvgBar 		= ko.computed(function () {
-				return parseInt(remapValue((I.average.health() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.health() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// User Entertain Bar Total
 			I.entertainTotalBar = ko.computed(function () {
-				return parseInt(remapValue((I.entertainTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.entertainTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Entertain Bar Total
 			I.entertainAvgBar 	= ko.computed(function () {
-				return parseInt(remapValue((I.average.entertain() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.entertain() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// User Cash Bar Total
 			I.cashTotalBar		= ko.computed(function () {
-				return parseInt(remapValue((I.cashTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.cashTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Cash Bar Total
 			I.cashAvgBar 		= ko.computed(function () {
-				return parseInt(remapValue((I.average.cash() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.cash() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// User Life Bar Total
 			I.lifeTotalBar		= ko.computed(function () {
-				return parseInt(remapValue((I.lifeTotal() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.lifeTotalAnn() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 			// Avg Life Bar Total
 			I.lifeAvgBar 		= ko.computed(function () {
-				return parseInt(remapValue((I.average.life() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.average.life() * 100), 0, I.roundedMax(), 0, 100).toFixed(2));
 			});
 
 		// Map Totals Bar Lengths
 
 			// User Expenses Bar Total
 			I.totalExpensesBar	= ko.computed(function () {
-				return parseInt(remapValue((I.totalExpenses() * 100), 0, I.roundedMaxTotal(), 0, 100).toFixed(2));
+				return parseFloat(remapValue((I.totalExpenses() * 100), 0, I.roundedMaxTotal(), 0, 100).toFixed(2));
 			});
 
 			// Avg Expenses Bar Total
 			I.avgExpensesBar 	= ko.computed(function () {
-				return parseInt(remapValue(I.avgExpenses() * 100, 0, I.roundedMaxTotal(), 0, 100).toFixed(2));
+				return parseFloat(remapValue(I.avgExpenses() * 100, 0, I.roundedMaxTotal(), 0, 100).toFixed(2));
 			});
 	};
 
@@ -362,9 +397,8 @@ The Event Bindings.
 Interactive Methods
 
 The Following Are The Methods We'll Be Using to Do All The
-Calculations And Element Manipulations. Some of These Will 
-Be Triggered By The Event Bindings at The Bottom of This Script
-While Others Will Occur Internally And/Or Automatically
+Element Manipulations. Most Of These Will Be Triggered By 
+Event Bindings.
 
 An Important Thing to Know When Using Knockout & jQuery Together
 Is That jQuery Event Bindings On An Object That Is Created By
@@ -379,7 +413,7 @@ Thus, The Keyword 'This' Is Referencing The Interactive Object
 We Created Above. This Is Important Because, Once We Enter A
 jQuery or Knockout Function, Referencing 'this' Will No Longer 
 Reference The Interactive But The jQuery or Knockout Object Instead. 
-To Get Around This, We Can Store A Reference To The Interactive Object,
+To Get Around This, We Can Store A Reference To The Interactive Object;
 In This Case I'm Using 'I' for Interactive.
 
 */
@@ -410,6 +444,7 @@ In This Case I'm Using 'I' for Interactive.
 			I.ratio 		= I.height / I.width;
 	};
 
+	// Calculates Slide Height Using Width & Ratio Then Applies Them.
 	Interactive.prototype.setSlideHeight = function () {
 		var I  				= this;
 			I.width 		= $(I.slide).width();
@@ -432,14 +467,14 @@ In This Case I'm Using 'I' for Interactive.
 		var I = this;
 		// Check If End Of Interactive Has Been Reached,
 		// If Not, Decrement currentHeight Then Animate Slide
+		if (I.index > 8) { $(I.next).fadeOut(); return; }
+		I.index ++;
 		$(I.next).fadeIn();
 		$(I.prev).fadeIn();
 		$(I.next).removeClass('dark');
 		$(I.prev).removeClass('dark');
 		I.currentHeight -= I.height;
-		I.index ++;
 		I.animateSlide();
-		if (I.index > 9) { $(I.next).fadeOut(); return; }
 		// Check Which Next Button Should Render
 		if (I.index === 9) {
 			$(I.next).addClass('dark');
@@ -452,14 +487,14 @@ In This Case I'm Using 'I' for Interactive.
 		var I = this;
 		// Check If End Of Interactive Has Been Reached,
 		// If Not, Increment currentHeight Then Animate Slide
-		if (interactive.index < 1) { $(I.prev).fadeOut(); return; }
+		if (I.index < 1) { $(I.prev).fadeOut(); return; }
+		I.index --;
 		$(I.next).fadeIn();
 		$(I.prev).fadeIn();
 		$(I.next).removeClass('dark');
 		$(I.prev).removeClass('dark');
-		interactive.currentHeight += interactive.height;
-		interactive.index --;
-		interactive.animateSlide();
+		I.currentHeight += I.height;
+		I.animateSlide();
 		// Check Which Next Button Should Render
 		if (I.index === 9) {
 			$(I.next).addClass('dark');
@@ -472,13 +507,14 @@ In This Case I'm Using 'I' for Interactive.
 		var I = this,
 			x = e.clientX - 24,
 			y = e.clientY - 116,
-			ratio = (value1 > value2) ? (value1 / value2) : (1 - (value1 / value2)),
-			difference = (ratio == 0) ? 0 : (ratio * 100).toFixed(1);
+			ratio = (value1 < value2) ? (- ((value1 / value2) - 1)) : (- (1 - (value1 / value2))),
+			difference = (typeof ratio === 'string') ? "N/A" : (ratio * 100).toFixed(2);
 			(value1 > value2) ? I.ttDiff('+' + numeral(difference).format('0,0') + '%') : (value1 < value2) ? I.ttDiff('-' + numeral(difference).format('0,0') + '%') : I.ttDiff(numeral(difference).format('0,0') + '%');
+			if (value1 === 0) I.ttDiff("N/A");
 			I.ttInput(numeral(value1).format('0,0'));
 			I.ttAvg(numeral(value2).format('0,0'));
 			I.cssInput(value1);
-			I.cssAvg(value2)
+			I.cssAvg(value2);
 		$(I.toolTip).css("top", y).css("left", x).stop().fadeIn();
 	};
 
@@ -508,7 +544,9 @@ As Mentioned, These Event Bindings Reference Our Specific 'interactive'
 Instance of The Interactive Constructor we Instatiated Above.
 In This Case, It Isn't Neccessary, but It Would Allow Us to 
 Create More Interactives And Reference The Same Functions If We Had To
-While Manipulating Them Independent of One Another.
+While Manipulating Them Independent of One Another. As A Personal 
+Preference, I Also Like Breaking The Logic Up This Way Too--Main
+Object, Methods, Instantiation of Instances, Event Bindings.
 
 */
 
@@ -553,7 +591,7 @@ While Manipulating Them Independent of One Another.
 			// If Above Conditions Are NOT Met, Prevent Key Input
 			if (allowInput === false) return e.preventDefault();
 			if ($(e.target).text() == 0) $(e.target).text('');
-			$(e.target).prev().removeClass('selected').addClass('active');
+			$(e.target).removeClass('selected').addClass('active');
 		}
 	});
 
@@ -569,13 +607,13 @@ While Manipulating Them Independent of One Another.
 
 	// Make Cursor Blink On Input Focus
 	$(interactive.slideInput).focus(function () {
-		$(this).prev().addClass('selected');
+		$(this).addClass('selected');
 	});
 
 	// Remove Cursor On Blur
 	$(interactive.slideInput).blur(function () {
 		if ($(this).text() == '') $(this).text(0);
-		$(this).prev().removeClass('selected active');
+		$(this).removeClass('selected active');
 	});
 
 
